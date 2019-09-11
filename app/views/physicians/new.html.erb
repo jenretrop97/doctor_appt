@@ -1,16 +1,14 @@
-<h1>Add New Physician</h1>
+<h1>Add Physician</h1>
+<% = form_with(model: physician, local: true, class: "ui form" ) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %><br><br>
 
-<%= form_for @physician do |ph| %>
-<%= ph.label :name %>
-<%= ph.text_field :name %><br><br>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br><br>
 
-<%= ph.label :email %>
-<%= ph.text_field :email %><br><br>
-
-<%= ph.label :specialty %>
-<%= ph.text_field :specialty %><br><br>
-
-<%= ph.submit %>
-
-
+    <%= f.label :specialty %>
+    <%= f.text_field :specialty %><br><br>
+  </div
+  <%= f.submit nil, class: "ui blue button inverted" %>
 <% end %>

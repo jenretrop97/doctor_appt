@@ -1,4 +1,4 @@
 class Physician < ApplicationRecord
   has_many :appointments
-  has_many :patients, :through => :appointmentsend
+  has_many :patients, :through => :appointments, dependent: :destroy
 end

@@ -1,25 +1,11 @@
 <h1>Physicians</h1>
-
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Specialty</th>
-  </thead>
-
-  <tbody>
-  <% @physicians.each do |ph| %>
-  <tr>
-    <td><%= ph.name %></td>
-    <td><%= ph.email %></td>
-    <td><%= ph.specialty %></td>
-    <td><%= link_to 'Show', physician_path(ph.id) %></td>
-    <td><%= link_to 'Edit', edit_physician_path(ph.id) %></td>
-    <td><%= link_to 'Delete', physician_path(ph.id), method: :delete %></td>
-  </tr>
+<%= link_to 'Add Physician', new_physician_path %>
+<hr />
+<h2><%= @physicians.length <= 0 ? "No Physicians" : "" %></h2> 
+<ul>
+  <% @physician.each do |physician| %>
+    <li>
+      <%= link_to physician.name, physician %>
+    </li>
   <% end %>
-
-  </tbody>
-</table>
-
-<%= link_to 'Add new physician', new_physician_path %>
+</ul>

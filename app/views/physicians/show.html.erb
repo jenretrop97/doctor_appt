@@ -1,8 +1,8 @@
-<h1>Physicians#show</h1>
-<h3><%= @physician.name %>
-<p><%= @physician.email %></p>
-<p><%= @physician.specialty %>
-</h3>
-<%= link_to 'Edit Physician Info', edit_physician_path %>
-<%= link_to 'Delete Physician Info', physician_path, method: :delete %>
-<%= link_to 'Back To Physicians', physicians_path %>
+<h1><%= @physican.name %></h1>
+<hr />
+<br />
+<%= link_to 'Appointments', physician_appointments_path(@physician), class: "ui primary button inverted" %>
+<br />
+<br />
+<br />
+<%= link_to "Delete Physician", @physicia , method: :delete, class: "ui red button inverted" %>
