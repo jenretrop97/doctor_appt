@@ -1,0 +1,16 @@
+<h1>Edit Physician</h1>
+
+<%= form_for @physican do |p| %>
+<%= p.label :name %>
+<%= p.text_field :name %><br><br>
+
+<%= p.label :email %>
+<%= p.email_field :email %><br><br>
+
+<%= p.label :specialty %>
+<%= p.text_field :specialty %><br><br>
+
+<%= p.submit %>
+
+
+<% end %>

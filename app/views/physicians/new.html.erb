@@ -1,0 +1,16 @@
+<h1>Add New Physician</h1>
+
+<%= form_for @physician do |ph| %>
+<%= ph.label :name %>
+<%= ph.text_field :name %><br><br>
+
+<%= ph.label :email %>
+<%= ph.text_field :email %><br><br>
+
+<%= ph.label :specialty %>
+<%= ph.text_field :specialty %><br><br>
+
+<%= ph.submit %>
+
+
+<% end %>

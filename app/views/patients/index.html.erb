@@ -1,0 +1,25 @@
+<h1>Patients</h1>
+
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Email</th>
+  </thead>
+
+  <tbody>
+  <% @patients.each do |p| %>
+  <tr>
+    <td><%= p.name %></td>
+    <td><%= p.age %></td>
+    <td><%= p.email %></td>
+    <td><%= link_to 'Show', patient_path(p.id) %></td>
+    <td><%= link_to 'Edit', edit_patient_path(p.id) %></td>
+    <td><%= link_to 'Delete', patient_path(p.id), method: :delete %></td>
+  </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'Add new patient', new_patient_path %>
