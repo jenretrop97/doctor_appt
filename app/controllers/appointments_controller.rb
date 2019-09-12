@@ -7,14 +7,14 @@ class AppointmentsController < ApplicationController
     @appointments = @physician.appointments
   end
 
-  def new
-    @patients = Patient.all - @physician.patients
-    @appointment = @physician.appointments.new
-  end
-
   def show
     @patient = @appointment.patient.find(params[:id])
     @doctor = @appointment.doctor.find(params[:doctor_id])
+  end
+
+  def new
+    @patients = Patient.all - @physician.patients
+    @appointment = @physician.appointments.new
   end
 
   def create
