@@ -7,6 +7,11 @@ class AppointmentsController < ApplicationController
     @appointments = @physician.appointments
   end
 
+  def new
+    @patients = Patient.all - @physician.patients
+    @appointment = @physician.appointments.new
+  end
+
   def show
     @patient = @appointment.patient.find(params[:id])
     @doctor = @appointment.doctor.find(params[:doctor_id])
@@ -19,6 +24,7 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = @physician.appointments.new(appointment_params)
+    
     if @appointment.save
       redirect_to physician_appointments_path
     else
@@ -31,21 +37,22 @@ class AppointmentsController < ApplicationController
     redirect_to physician_appointments_path
   end
 
-private
-  def set_physician
-    @physician = Physician.find(params[:physician_id])
-  end
+  private
+    def set_physician
+      @physician = Physician.find(params[:physician_id])
+    end
 
-  def set_appointment
+    def set_appointment
     @appointment = Appointment.find(params[:id])
-  end
+    end
 
-  def set_patients
+    def set_patients
     @patients = (Patient.all - @physician.patients)
-  end
+    end
 
-  def appointment_params
+    def appointment_params
     params.require(:appointment).permit(:patient_id, :date, :time)
+    end
   end
 end
   
