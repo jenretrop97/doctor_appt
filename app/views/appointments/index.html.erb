@@ -1,12 +1,23 @@
-<h1><%= @physician.name %>: Appointments</h1>
-<%= link_to 'Add Appointment', new_physician_appointment_path(@physician ) %>
-<hr />
-<ul>
-  <% @patient.each do |patient| %>
-    <li>
-      <%= patient.name %>
-      <br />
-      <%= link_to 'Remove', physician_appointment_path(@physician), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+<h1><%= @physician.name %> Appointments</h1>
+<%= link_to 'Add Appointment', new_physician_appointment_path(@physician) %>
+<br />
+<table class="ui celled table">
+  <thead>
+    <th>Patient Name</th>
+    <th>Patient Age</th>
+    <th>Appointment Date</th>
+    <th>Appointment Time</th>
+    <th>Remove</th>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appt| %>
+      <tr>
+        <td><%= link_to appt.patient.name, patient_path(appt.patient), class: "ui basic button"%></td>
+        <td><%= appt.patient.age %></td>
+        <td><%= appt.date.strftime('%a, %b %d, %Y') %></td>
+        <td><%= appt.time.strftime("%l:%M %p")  %></td>
+        <td><%= button_to 'Cancel', physician_appointment_path(appt.doctor_id, appt.id), method: :delete, class:"ui button red inverted" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

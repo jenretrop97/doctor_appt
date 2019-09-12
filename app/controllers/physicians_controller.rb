@@ -1,18 +1,22 @@
 class PhysiciansController < ApplicationController
-  before_action :set_physician, only: [:edit, :show, :update, :destroy]
-  
+  before_action :set_physician, only: [:show, :edit, :update, :destroy]
+
   def index
     @physicians = Physician.all
   end
 
-  def new
-    @physicians = Physician.new
+  def show
   end
 
-  def create
-    @physician = Physician.create(physician_params)
+  def new
+    @physician = Physician.new 
+  end
+
+  def create 
+    @physician = Physician.new(physician_params)
+
     if @physician.save
-      redirect_to physicians_path
+      redirect_to @physician
     else
       render :new
     end
@@ -21,31 +25,25 @@ class PhysiciansController < ApplicationController
   def edit
   end
 
-  def show
-  end
-
-  def update
-    @physician = Physician.find(params[:id])
+  def update 
     if @physician.update(physician_params)
-      redirect_to physicians_path
+      redirect_to @physician 
     else
       render :edit
     end
   end
-
 
   def destroy
     @physician.destroy
     redirect_to physicians_path
   end
 
-private
+  private 
+    def physician_params
+      params.require(:physician).permit(:name, :email, :specialty)
+    end
 
-  def set_physician
-  @physician = Physician.find(params[:id])
-  end
-
-  def physician_params
-  params.require(:physician).permit(:name, :email, :specialty)
-  end
+    def set_physician
+      @physician = Physician.find(params[:id])
+    end
 end
